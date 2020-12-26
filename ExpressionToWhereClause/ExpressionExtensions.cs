@@ -7,7 +7,7 @@ namespace ExpressionToWhereClause
 {
     public static class ExpressionExtensions
     {
-        public static (string, Dictionary<string, object>) ToWhereClause<T>(this Expression<Func<T, bool>> expression, bool? nonParametric = null, ISqlAdapter sqlAdapter = null) where T : class
+        public static (string, Dictionary<string, object>) ToWhere<T>(this Expression<Func<T, bool>> expression, bool? nonParametric = null, ISqlAdapter sqlAdapter = null) where T : class
         {
             ExpressionEntry expressionEntry = new ExpressionEntry(nonParametric ?? ExpressionConfigurations.NonParametric, sqlAdapter ?? ExpressionConfigurations.Adapter);
             expressionEntry.Visit(expression);
@@ -17,7 +17,7 @@ namespace ExpressionToWhereClause
 
         public static string ToWhereClauseNonParametric<T>(this Expression<Func<T, bool>> expression, ISqlAdapter sqlAdapter = null) where T : class
         {
-            return ToWhereClause(expression, true, sqlAdapter).Item1;
+            return ToWhere(expression, true, sqlAdapter).Item1;
         }
     }
 }

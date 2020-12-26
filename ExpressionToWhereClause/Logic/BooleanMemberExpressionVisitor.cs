@@ -23,8 +23,8 @@ namespace ExpressionToWhereClause
             sb.Clear();
 
             string parameterName = EnsurePatameter(MemberInfo);
-            sb.Append($"{fieldName} = @{parameterName}");
-            Parameters.Add($"@{parameterName}", GetConstant());
+            sb.Append($"{fieldName} = :{parameterName}");
+            Parameters.Add($":{parameterName}", GetConstant());
             return node;
         }
     }

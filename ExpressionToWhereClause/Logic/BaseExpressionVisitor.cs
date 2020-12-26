@@ -97,7 +97,7 @@ namespace ExpressionToWhereClause
         {
             string key = SqlAdapter.GetParameterName(mi);
             int seed = 1;
-            while (Parameters.ContainsKey($"@{key}"))
+            while (Parameters.ContainsKey($":{key}"))
             {
                 key = key + seed;
                 seed++;

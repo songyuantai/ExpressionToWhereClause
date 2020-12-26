@@ -41,8 +41,8 @@ namespace ExpressionToWhereClause
             memberExpressionVisitor.Visit(node.Left);
             string fieldName = memberExpressionVisitor.GetResult().ToString();
             string parameterName = EnsurePatameter(memberExpressionVisitor.MemberInfo);
-            string sql = $"{fieldName} {ConvertExpressionTypeToSymbol(node.NodeType)} @{parameterName}";
-            Parameters.Add($"@{parameterName}", ExpressionEntry.GetConstantByExpression(node.Right));
+            string sql = $"{fieldName} {ConvertExpressionTypeToSymbol(node.NodeType)} :{parameterName}";
+            Parameters.Add($":{parameterName}", ExpressionEntry.GetConstantByExpression(node.Right));
             return sql;
         }
     }
